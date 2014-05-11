@@ -5,29 +5,24 @@ function getDim(level)
 }
 
 //color generator
-function randomColor()
+function randomColor(callback)
 {
-	var num = Math.floor(Math.random() * 5);
-	switch(num)
-	{
-		case 0:
-			return "99FF8E";
-		case 1:
-			return "FFF38E";
-		case 2:
-			return "FFC397";
-		case 3:
-			return "FF8EA0";
-		case 4:
-			return "8EA4FF";
-	}
+	chrome.storage.sync.get('palette', function(val) {
+		$.getJSON('colors.json', function(data) {		
+			var palette = data.colors[val['palette']].palette;
+			var num = Math.floor(Math.random() * palette.length);
+			callback(palette[num]);
+		});
+	});
 }
 
 //add color and dimention to cells
 function beautifyCharacter(dim)
 {
 	$.each($('td'), function(key,val) {
-		$(val).css( {"background-color":randomColor(),"width":dim, "height":dim});
+		randomColor( function(color) {
+			$(val).css( {"background-color":color,"width":dim, "height":dim});
+		});
 	});
 }
 
@@ -78,6 +73,7 @@ function getProgress(exp) {
 	var progress = (exp - expFromPrevLevel)/(expRequired - expFromPrevLevel);
 	return Math.floor(progress*100);
 }
+
 function init() {
 	chrome.storage.sync.get('exp', function(value) {
 		var exp = value['exp'];

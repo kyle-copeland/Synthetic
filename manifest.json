@@ -8,7 +8,7 @@
 	"browser_action": {
 		"default_icon": "icon19.png",
 		"default_popup": "popup.html",
-		"default_title": "First Extension"
+		"default_title": "Synthetic"
 	},
 	
 	"author":"Kyle Copeland",
