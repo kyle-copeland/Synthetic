@@ -1,0 +1,20 @@
+{
+	"manifest_version":2,
+	
+	"name": "Synthetic",
+	"version": "0.1",
+	"description": "Leveling and creating art while browsing the interweb",
+	
+	"browser_action": {
+		"default_icon": "icon19.png",
+		"default_popup": "popup.html",
+		"default_title": "First Extension"
+	},
+	
+	"background": {
+		"scripts":["scripts/event.js"],
+		"persistent":false
+	},
+	
+	"permissions":["<all_urls>","storage"]
+}
