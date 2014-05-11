@@ -63,11 +63,15 @@ function createCharacter(exp)
 }
 //Level Algorithm Floor[Log(EXP)] == Level
 function getLevel(exp) {
+	if(exp == 0)
+		return 0;
 	return Math.floor(Math.log(exp));
 }
 
 //used for find % of progess bar
 function getProgress(exp) {
+	if(exp == 0)
+		return 0;
 	var level = getLevel(exp);
 	var expFromPrevLevel = Math.exp(level);
 	var expRequired = Math.exp(level+1);
@@ -77,6 +81,8 @@ function getProgress(exp) {
 function init() {
 	chrome.storage.sync.get('exp', function(value) {
 		var exp = value['exp'];
+		if(!exp)
+			exp = 0;
 		createCharacter(exp);
 	});
 }

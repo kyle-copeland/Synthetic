@@ -11,10 +11,13 @@
 		"default_title": "First Extension"
 	},
 	
+	"author":"Kyle Copeland",
+	
 	"background": {
 		"scripts":["scripts/event.js"],
 		"persistent":false
 	},
 	
 	"permissions":["<all_urls>","storage"]
+
 }
